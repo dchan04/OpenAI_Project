@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\openai_backend.props" />
+</Project>

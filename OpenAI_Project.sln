@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33402.96
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "openai_client", "reactapp\openai_client.esproj", "{1320792D-E12B-4DFF-B79E-70AC3A01E9C7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "openai_backend", "webapi\openai_backend.csproj", "{F3DC7180-7173-46AD-9A96-4E3C2C20A977}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1320792D-E12B-4DFF-B79E-70AC3A01E9C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1320792D-E12B-4DFF-B79E-70AC3A01E9C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1320792D-E12B-4DFF-B79E-70AC3A01E9C7}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{1320792D-E12B-4DFF-B79E-70AC3A01E9C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1320792D-E12B-4DFF-B79E-70AC3A01E9C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1320792D-E12B-4DFF-B79E-70AC3A01E9C7}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F3DC7180-7173-46AD-9A96-4E3C2C20A977}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3DC7180-7173-46AD-9A96-4E3C2C20A977}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3DC7180-7173-46AD-9A96-4E3C2C20A977}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3DC7180-7173-46AD-9A96-4E3C2C20A977}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {25DBE4F4-19A9-4A0B-A36B-F42F13AE413B}
+	EndGlobalSection
+EndGlobal
