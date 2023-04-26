@@ -1,0 +1,36 @@
+.ChatGPT {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  left: 270px;
+  height: 100vh;
+  width: calc(100% - 270px);
+  background-color: var(--bs-gray-dark);
+  color: #fff;
+}
+
+.ChatGPT .title {
+  padding: 5px;
+  text-align: center;
+}
+
+.input-section {
+  position: relative;
+  padding: 10px;
+  width: 100%;
+}
+
+input {
+  color: black;
+  padding: 5px;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--bs-white);
+}
+
+input:focus {
+  outline: none;
+}
