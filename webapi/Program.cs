@@ -29,6 +29,17 @@ builder.Services.AddRateLimiter(options =>
     };
 });
 
+builder.Services.AddCors(setupAction: options =>
+{
+    options.AddPolicy("CORSPolicy", configurePolicy: builder =>
+    {
+        builder
+        .AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 app.UseRateLimiter();
 
@@ -40,6 +51,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors(policyName: "CORSPolicy");
 
 app.UseAuthorization();
 

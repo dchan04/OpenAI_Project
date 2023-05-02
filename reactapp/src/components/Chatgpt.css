@@ -7,30 +7,53 @@
   left: 270px;
   height: 100vh;
   width: calc(100% - 270px);
-  background-color: var(--bs-gray-dark);
-  color: #fff;
+  background-color: var(--bs-gray-light);
 }
 
 .ChatGPT .title {
-  padding: 5px;
-  text-align: center;
+  padding: 10px;
 }
 
 .input-section {
   position: relative;
   padding: 10px;
-  width: 100%;
+  width: 60%;
 }
 
-input {
-  color: black;
-  padding: 5px;
+.msgHistory {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+  list-style-type: none;
+  padding: 0 1rem 0 1rem;
+  margin: 0;
+  overflow-y: auto;
+  overflow-anchor: auto;
   width: 100%;
-  border: none;
-  border-radius: 10px;
-  background-color: var(--bs-white);
+  min-height: 650px;
+  max-height: 750px;
 }
 
-input:focus {
-  outline: none;
+.msgHistory li {
+  padding: 2rem 10rem 2rem 10rem;
+  list-style: none;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.msg-chatgpt {
+  padding: 15px 20px 15px 70px;
+  margin: 5px;
+  background-color: var(--bs-success);
+}
+
+.msg-user {
+  padding: 15px 20px 15px 70px;
+  margin: 5px;
+  align-self: flex-end;
+  padding: 15px 70px 15px 20px;
+  background-color: var(--bs-info);
 }

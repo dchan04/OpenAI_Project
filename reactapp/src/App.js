@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import ChatGPT from "./components/Chatgpt";
-import ChatCompletion from "./components/ChatCompletion";
+import CreateEdit from "./components/CreateEdit";
 
 export default function App() {
   const router = createBrowserRouter(

@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
-using RestSharp;
+using System.Net.Http.Headers;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace webapi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]/")]
     [ApiController]
     public class ChatApiController : ControllerBase
     {
@@ -15,55 +15,133 @@ namespace webapi.Controllers
         {
             _config = config;
         }
+
         [HttpPost]
         [Route("ChatGpt")]
-        public string ChatGPT(string userMsg)
+        public async Task<IActionResult> ChatGPTAsync(string userMsg)
         {
-            var param = "{\r\n    \"model\": \"gpt-3.5-turbo\",\r\n    \"messages\": [\r\n        {\r\n            \"role\": \"user\",\r\n            \"content\": \"" + userMsg + "\"\r\n        }\r\n    ]\r\n}";
-            var client = new RestClient("https://openai80.p.rapidapi.com");
-            var request = new RestRequest("chat/completions", Method.Post);
-            request.AddHeader("content-type", "application/json");
-            request.AddHeader("X-RapidAPI-Key", _config["OpenAi:Key"]);
-            request.AddHeader("X-RapidAPI-Host", "openai80.p.rapidapi.com");
-            request.AddParameter("application/json", param, ParameterType.RequestBody);
-            RestResponse response = client.Execute(request);
-            dynamic parseResponse = JObject.Parse(response.Content); 
-            dynamic returnResponse = parseResponse.choices[0].message.content;
-            return returnResponse;
+            var client = new HttpClient();
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri("https://openai80.p.rapidapi.com/chat/completions"),
+                Headers =
+                {
+                    { "X-RapidAPI-Key", _config["OpenAi:Key"] },
+                    { "X-RapidAPI-Host", "openai80.p.rapidapi.com" },
+                },
+                Content = new StringContent("{\r\n    \"model\": \"gpt-3.5-turbo\",\r\n    \"messages\": [\r\n        {\r\n            \"role\": \"user\",\r\n            \"content\": \"" +  userMsg  + "\"\r\n        }\r\n    ]\r\n}")
+                {
+                    Headers =
+                    {
+                        ContentType = new MediaTypeHeaderValue("application/json")
+                    }
+                }
+            };
+            using (var response = await client.SendAsync(request))
+            {
+                response.EnsureSuccessStatusCode();
+                var body = await response.Content.ReadAsStringAsync();
+                dynamic content = JObject.Parse(body);
+                dynamic returnObj = content.choices[0].message.content;
+                return Ok(returnObj);
+            }
         }
 
         [HttpPost]
-        [Route("CreateEdit")]
-        public string CreateEdit(string input, string instruction)
+        [Route("ImageGen")]
+        public async Task<IActionResult> ImageGeneration(string prompt)
         {
-            var param = "{\r\n    \"model\": \"text-davinci-edit-001\",\r\n    \"input\":\" " + input + " \",\r\n    \"instruction\": \" " + instruction + " \"\r\n}";
-            var client = new RestClient("https://openai80.p.rapidapi.com");
-            var request = new RestRequest("edits", Method.Post);
-            request.AddHeader("content-type", "application/json");
-            request.AddHeader("X-RapidAPI-Key", _config["OpenAi:Key"]);
-            request.AddHeader("X-RapidAPI-Host", "openai80.p.rapidapi.com");
-            request.AddParameter("application/json", param , ParameterType.RequestBody);
-            RestResponse response = client.Execute(request);
-            dynamic parseResponse = JObject.Parse(response.Content);
-            dynamic returnResponse = parseResponse.choices[0].text;
-            Console.Write(returnResponse);
-            return returnResponse;
+            var client = new HttpClient();
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri("https://openai80.p.rapidapi.com/images/generations"),
+                Headers =
+                {
+                    { "X-RapidAPI-Key", _config["OpenAi:Key"]},
+                    { "X-RapidAPI-Host", "openai80.p.rapidapi.com" },
+                },
+                Content = new StringContent("{\r\n    \"prompt\": \""+ prompt + "\",\r\n    \"n\": 2,\r\n    \"size\": \"1024x1024\"\r\n}")
+                {
+                    Headers =
+                    {
+                        ContentType = new MediaTypeHeaderValue("application/json")
+                    }
+                }
+            };
+            using (var response = await client.SendAsync(request))
+            {
+                response.EnsureSuccessStatusCode();
+                var body = await response.Content.ReadAsStringAsync();
+                dynamic content = JObject.Parse(body);
+                dynamic returnObj = content.data;
+                return Ok(returnObj);
+            }
         }
 
         [HttpPost]
         [Route("AIMod")]
-        public IActionResult AiModeration(string input, string model)
+        public async Task<IActionResult> AiModeration(string input)
         {
-            var client = new RestClient("https://openai80.p.rapidapi.com");
-            var request = new RestRequest("moderations", Method.Post);
-            request.AddHeader("content-type", "application/json");
-            request.AddHeader("X-RapidAPI-Key", _config["OpenAi:Key"]);
-            request.AddHeader("X-RapidAPI-Host", "openai80.p.rapidapi.com");
-            request.AddParameter("application/json", "{\r\n    \"input\": \"I want to kill them.\",\r\n    \"model\": \"text-moderation-stable\"\r\n}", ParameterType.RequestBody);
-            RestResponse response = client.Execute(request);
-            dynamic parseResponse = JObject.Parse(response.Content);
-            dynamic returnResponse = parseResponse.results[0].categories;
-            return Ok(returnResponse);
+            var client = new HttpClient();
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri("https://openai80.p.rapidapi.com/moderations"),
+                Headers =
+                {
+                    { "X-RapidAPI-Key", _config["OpenAi:Key"] },
+                    { "X-RapidAPI-Host", "openai80.p.rapidapi.com" },
+                },
+                Content = new StringContent("{\r\n    \"input\": \"" + input + "\",\r\n    \"model\": \"text-moderation-stable\"\r\n}")
+                {
+                    Headers =
+                    {
+                        ContentType = new MediaTypeHeaderValue("application/json")
+                    }
+                }
+            };
+            using (var response = await client.SendAsync(request))
+            {
+                response.EnsureSuccessStatusCode();
+                var body = await response.Content.ReadAsStringAsync();
+                dynamic content = JObject.Parse(body);
+                dynamic returnObj = content.results[0];
+                return Ok(returnObj);
+            }
+        }
+
+        [HttpPost]
+        [Route("CreateEdit")]
+        public async Task<IActionResult> CreateEdit(string input, string instruction)
+        {
+            var client = new HttpClient();
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri("https://openai80.p.rapidapi.com/edits"),
+                Headers =
+                {
+                    { "X-RapidAPI-Key", _config["OpenAi:Key"] },
+                    { "X-RapidAPI-Host", "openai80.p.rapidapi.com" },
+                },
+                Content = new StringContent("{\r\n    \"model\": \"text-davinci-edit-001\",\r\n    \"input\": \"" + input +"\",\r\n    \"instruction\": \"" + instruction + "\"\r\n}")
+                {
+                    Headers =
+                    {
+                        ContentType = new MediaTypeHeaderValue("application/json")
+                    }
+                }
+            };
+            using (var response = await client.SendAsync(request))
+            {
+                response.EnsureSuccessStatusCode();
+                var body = await response.Content.ReadAsStringAsync();
+                dynamic content = JObject.Parse(body);
+                dynamic returnObj = content.choices[0];
+                return Ok(returnObj);
+            }
         }
     }
 }

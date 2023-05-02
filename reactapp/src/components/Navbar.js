@@ -7,7 +7,7 @@ import {
   CDBSidebarMenu,
   CDBSidebarMenuItem,
 } from "cdbreact";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 export default function Navbar() {
   return (
     <div
@@ -30,15 +30,30 @@ export default function Navbar() {
 
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
-            <Link exact to="/Chatgpt" activeClassName="activeClicked">
+            <NavLink
+              to="/Chatgpt"
+              className={(navData) =>
+                navData.isActive ? "activeClicked" : "none"
+              }
+            >
               <CDBSidebarMenuItem>OpenGPT</CDBSidebarMenuItem>
-            </Link>
-            <Link exact to="/tables" activeClassName="activeClicked">
+            </NavLink>
+            <NavLink
+              to="/tables"
+              className={(navData) =>
+                navData.isActive ? "activeClicked" : "none"
+              }
+            >
               <CDBSidebarMenuItem>Chat Completition</CDBSidebarMenuItem>
-            </Link>
-            <Link exact to="/profile" activeClassName="activeClicked">
+            </NavLink>
+            <NavLink
+              to="/profile"
+              className={(navData) =>
+                navData.isActive ? "activeClicked" : "none"
+              }
+            >
               <CDBSidebarMenuItem>Moderation</CDBSidebarMenuItem>
-            </Link>
+            </NavLink>
           </CDBSidebarMenu>
         </CDBSidebarContent>
 
