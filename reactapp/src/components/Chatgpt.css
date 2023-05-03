@@ -15,7 +15,6 @@
 }
 
 .input-section {
-  position: relative;
   padding: 10px;
   width: 60%;
 }
@@ -26,7 +25,7 @@
   justify-content: start;
   align-items: flex-start;
   list-style-type: none;
-  padding: 0 1rem 0 1rem;
+  padding: 0 4rem 0 4rem;
   margin: 0;
   overflow-y: auto;
   overflow-anchor: auto;
@@ -36,7 +35,7 @@
 }
 
 .msgHistory li {
-  padding: 2rem 10rem 2rem 10rem;
+  padding: 1.5rem 2rem 0px 2rem;
   list-style: none;
   border-radius: 20px;
   font-size: 16px;
@@ -44,16 +43,88 @@
   color: #fff;
 }
 
+.timeStamp {
+  position: relative;
+  top: 50%;
+  margin-left: -25px;
+  color: #000000b7;
+}
+
 .msg-chatgpt {
-  padding: 15px 20px 15px 70px;
   margin: 5px;
   background-color: var(--bs-success);
 }
 
 .msg-user {
-  padding: 15px 20px 15px 70px;
   margin: 5px;
   align-self: flex-end;
-  padding: 15px 70px 15px 20px;
   background-color: var(--bs-info);
+}
+
+.load-container {
+  position: relative;
+  float: right;
+}
+
+.load-msg {
+  display: inline;
+  position: relative;
+  width: 125px;
+  height: 30px;
+}
+
+.load-animation {
+  display: inline-block;
+  position: relative;
+  width: 75px;
+  height: 30px;
+}
+.load-animation div {
+  position: absolute;
+  top: 50%;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #bbb;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.load-animation div:nth-child(1) {
+  left: 8px;
+  animation: load-animation1 0.6s infinite;
+}
+.load-animation div:nth-child(2) {
+  left: 8px;
+  animation: load-animation2 0.6s infinite;
+}
+.load-animation div:nth-child(3) {
+  left: 32px;
+  animation: load-animation2 0.6s infinite;
+}
+.load-animation div:nth-child(4) {
+  left: 56px;
+  animation: load-animation3 0.6s infinite;
+}
+@keyframes load-animation1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes load-animation3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes load-animation2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
 }

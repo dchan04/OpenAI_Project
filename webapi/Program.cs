@@ -9,7 +9,7 @@ builder.Services.AddControllers().AddNewtonsoftJson();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+/*
 builder.Services.AddRateLimiter(options =>
 {
     options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
@@ -28,7 +28,7 @@ builder.Services.AddRateLimiter(options =>
         await context.HttpContext.Response.WriteAsync("Too many requests. Please try later again... ", cancellationToken: token);
     };
 });
-
+*/
 builder.Services.AddCors(setupAction: options =>
 {
     options.AddPolicy("CORSPolicy", configurePolicy: builder =>
