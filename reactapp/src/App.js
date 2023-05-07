@@ -9,13 +9,14 @@ import {
 } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import ChatGPT from "./components/Chatgpt";
-import CreateEdit from "./components/CreateEdit";
+import Moderation from "./components/Moderation";
 
 export default function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Root />}>
-        <Route index path="Chatgpt" element={<ChatGPT />} />
+        <Route index path="/" element={<ChatGPT />} />
+        <Route index path="/moderation" element={<Moderation />} />
       </Route>
     )
   );

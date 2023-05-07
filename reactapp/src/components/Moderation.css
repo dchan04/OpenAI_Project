@@ -1,4 +1,4 @@
-.ChatGPT {
+.moderation {
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -9,10 +9,12 @@
 	width: calc(100% - 270px);
 	line-height: 26px;
 	font-size: 16px;
+	font-weight: 400;
 	background-color: var(--bs-gray-light);
+	color: #fff;
 }
 
-.ChatGPT .title {
+.moderation .title {
 	display: flex;
 	padding: 10px;
 	width: 100%;
@@ -20,60 +22,50 @@
 	justify-content: center;
 }
 
-.ChatGPT .title h1 {
+.moderation .title h1 {
 	color: white;
 }
 
-.input-section {
-	padding: 10px;
-	width: 60%;
-	line-height: 26px;
-	font-size: 16px;
-}
-
-.msgHistory {
+.results-container {
 	display: flex;
 	flex-direction: column;
 	justify-content: start;
-	align-items: flex-start;
+	align-items: flex-center;
 	list-style-type: none;
 	padding: 0 5rem 0 5rem;
 	margin: 0;
 	overflow-y: auto;
 	overflow-anchor: auto;
-	width: 80%;
+	width: 90%;
 	min-height: 650px;
 	max-height: 750px;
 }
-
-.msgHistory li {
-	padding: 1.5rem 2rem 0px 2rem;
+.results-container li {
+	padding: 1rem 1rem 0px 1rem;
 	list-style: none;
 	border-radius: 20px;
+	margin-bottom: 80px;
 	color: #fff;
 }
+.results-container li span {
+	font-weight: 600;
+}
 
-.msg-chatgpt .timeStamp {
+.msg-result .timeStamp {
 	position: relative;
-	top: 60%;
+	top: 20%;
 	margin-left: 2px;
 	color: #000000b7;
 }
 
-.msg-user .timeStamp {
-	position: relative;
-	top: 60%;
-	margin-left: 25px;
-	color: #000000b7;
-}
-
-.msg-chatgpt {
+.msg-result {
 	position: relative;
 	margin: 5px;
+	text-align: center;
 	background-color: #86bb71;
 }
 
-.msg-chatgpt:before {
+.msg-result:before {
 	content: "";
 	width: 0px;
 	height: 0px;
@@ -82,27 +74,7 @@
 	border-right: 10px solid transparent;
 	border-top: 10px solid #86bb71;
 	border-bottom: 10px solid transparent;
-	left: 19px;
-	bottom: -19px;
-}
-
-.msg-user {
-	position: relative;
-	margin: 5px;
-	align-self: flex-end;
-	background-color: #94c2ed;
-}
-
-.msg-user:before {
-	content: "";
-	width: 0px;
-	height: 0px;
-	position: absolute;
-	border-left: 10px solid transparent;
-	border-right: 10px solid #94c2ed;
-	border-top: 10px solid #94c2ed;
-	border-bottom: 10px solid transparent;
-	right: 19px;
+	left: 50%;
 	bottom: -19px;
 }
 
