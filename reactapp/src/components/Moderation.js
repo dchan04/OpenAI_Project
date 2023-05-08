@@ -1,5 +1,6 @@
 import "./Moderation.css";
 import { useEffect, useState, useRef } from "react";
+import axios from "axios";
 import * as Icon from "react-bootstrap-icons";
 import Table from "react-bootstrap/Table";
 function FlagIcon(prop) {
@@ -15,8 +16,8 @@ export default function Moderation() {
 	const [isLoading, setIsLoading] = useState(false);
 	const [results, setResults] = useState([]);
 	const [userInput, setUserInput] = useState("");
-	const [resultHistory, setresultHistory] = useState([]);
-	const testResults = [
+	const [resultHistory, setResultHistory] = useState([]);
+	/*const testResults = [
 		{
 			id: crypto.randomUUID(),
 			flagged: true,
@@ -59,22 +60,71 @@ export default function Moderation() {
 			},
 			timeStamp: "11:26:14",
 		},
-	];
+	];*/
+
+	useEffect(() => {
+		bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+	}, [userInput]);
+
+	useEffect(() => {
+		console.log("useEffect called");
+		console.log(Object.keys(results).length !== 0);
+		if (Object.keys(results).length !== 0) {
+			let today = new Date();
+			let newResult = {
+				id: crypto.randomUUID(),
+				userPrompt: userInput,
+				flagged: results.flagged,
+				categories: {
+					hate: results.categories.hate,
+					threatening: results.categories["hate/threatening"],
+					selfHarm: results.categories["self-harm"],
+					sexual: results.categories.sexual,
+					minors: results.categories["sexual/minors"],
+					violence: results.categories.violence,
+					graphic: results.categories["violence/graphic"],
+				},
+				categoryScores: {
+					hate: results.category_scores.hate,
+					threatening: results.category_scores["hate/threatening"],
+					selfHarm: results.category_scores["self-harm"],
+					sexual: results.category_scores.sexual,
+					minors: results.category_scores["sexual/minors"],
+					violence: results.category_scores.violence,
+					graphic: results.category_scores["violence/graphic"],
+				},
+				timeStamp:
+					today.getHours() +
+					":" +
+					today.getMinutes() +
+					":" +
+					today.getSeconds(),
+			};
+			resultHistory.push(newResult);
+
+			setIsLoading(false);
+		}
+		setUserInput("");
+	}, [results]);
 
 	const submitUserInput = () => {
 		setIsLoading(true);
-		setUserInput("");
-		bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+		//call backend for result
+		axios
+			.post(`https://localhost:7290/ChatApi/AIMod?input=${userInput}`)
+			.then((res) => setResults(res.data), console.log(results))
+			.catch((error) => console.log(error));
 	};
+
 	return (
 		<div className="moderation">
 			<div className="title">
 				<h1>Moderation Ai</h1>
 			</div>
 			<ul className="results-container">
-				{testResults?.map((result) => (
+				{resultHistory?.map((result) => (
 					<li className="msg-result" key={result.id}>
-						<span>User Prompt: </span>"userInput"
+						<span>User Prompt: </span> {result.userPrompt}
 						<div>
 							<span>Flagged By Mod: </span>
 							<FlagIcon flag={result.flagged} />
@@ -84,9 +134,10 @@ export default function Moderation() {
 								<tr>
 									<th></th>
 									<th>Hate</th>
-									<th>Threatening</th>
+									<th>Hate/Threatening</th>
 									<th>Self Harm</th>
 									<th>Sexual</th>
+									<th>Sexual/Minors</th>
 									<th>Violence</th>
 									<th>Graphic</th>
 								</tr>
@@ -116,6 +167,11 @@ export default function Moderation() {
 									</td>
 									<td>
 										<FlagIcon
+											flag={result.categories.minors}
+										/>
+									</td>
+									<td>
+										<FlagIcon
 											flag={result.categories.violence}
 										/>
 									</td>
@@ -127,23 +183,48 @@ export default function Moderation() {
 								</tr>
 								<tr>
 									<td>Score</td>
-									<td>{result.categoryScores.hate * 100}%</td>
 									<td>
-										{result.categoryScores.threatening *
-											100}
+										{(
+											result.categoryScores.hate * 100
+										).toFixed(2)}
 										%
 									</td>
 									<td>
-										{result.categoryScores.selfHarm * 100}%
+										{(
+											result.categoryScores.threatening *
+											100
+										).toFixed(2)}
+										%
 									</td>
 									<td>
-										{result.categoryScores.sexual * 100}%
+										{(
+											result.categoryScores.selfHarm * 100
+										).toFixed(2)}
+										%
 									</td>
 									<td>
-										{result.categoryScores.violence * 100}%
+										{(
+											result.categoryScores.sexual * 100
+										).toFixed(2)}
+										%
 									</td>
 									<td>
-										{result.categoryScores.graphic * 100}%
+										{(
+											result.categoryScores.minors * 100
+										).toFixed(2)}
+										%
+									</td>
+									<td>
+										{(
+											result.categoryScores.violence * 100
+										).toFixed(2)}
+										%
+									</td>
+									<td>
+										{(
+											result.categoryScores.graphic * 100
+										).toFixed(2)}
+										%
 									</td>
 								</tr>
 							</tbody>

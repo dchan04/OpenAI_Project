@@ -76,7 +76,7 @@ export default function Chatgpt() {
 				<h1>ChatGPT</h1>
 			</div>
 			<ul className="msgHistory">
-				{testHistory?.map((msg) => (
+				{messageHistory?.map((msg) => (
 					<li
 						className={
 							msg.role === "user" ? "msg-user" : "msg-chatgpt"

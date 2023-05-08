@@ -55,21 +55,22 @@
 
 .msg-chatgpt .timeStamp {
 	position: relative;
-	top: 60%;
-	margin-left: 2px;
+	bottom: calc(0% - 35px);
+	text-align: start;
 	color: #000000b7;
 }
 
 .msg-user .timeStamp {
 	position: relative;
-	top: 60%;
-	margin-left: 25px;
+	bottom: calc(0% - 35px);
+	text-align: end;
 	color: #000000b7;
 }
 
 .msg-chatgpt {
 	position: relative;
-	margin: 5px;
+	margin: 50px;
+	text-align: center;
 	background-color: #86bb71;
 }
 
@@ -90,6 +91,7 @@
 	position: relative;
 	margin: 5px;
 	align-self: flex-end;
+	text-align: center;
 	background-color: #94c2ed;
 }
 
