@@ -37,11 +37,11 @@
 	justify-content: start;
 	align-items: flex-start;
 	list-style-type: none;
-	padding: 0 5rem 0 5rem;
+	padding: 0 2rem 0 2rem;
 	margin: 0;
 	overflow-y: auto;
 	overflow-anchor: auto;
-	width: 80%;
+	width: 100%;
 	min-height: 650px;
 	max-height: 750px;
 }
@@ -70,7 +70,7 @@
 .msg-chatgpt {
 	position: relative;
 	margin: 50px;
-	text-align: center;
+	text-align: left;
 	background-color: #86bb71;
 }
 
@@ -91,7 +91,7 @@
 	position: relative;
 	margin: 5px;
 	align-self: flex-end;
-	text-align: center;
+	text-align: left;
 	background-color: #94c2ed;
 }
 

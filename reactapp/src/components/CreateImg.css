@@ -1,0 +1,69 @@
+.createImg {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	left: 270px;
+	height: 100vh;
+	width: calc(100% - 270px);
+	line-height: 26px;
+	font-size: 16px;
+	font-weight: 400;
+	background-color: var(--bs-gray-light);
+	color: #fff;
+}
+
+.createImg .title {
+	display: flex;
+	padding: 10px;
+	width: 100%;
+	background-color: var(--bs-body-color);
+	justify-content: center;
+}
+
+.createImg .title h1 {
+	color: white;
+}
+
+.createImg .input-section {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+.image-gallery {
+	justify-content: center;
+	overflow-y: auto;
+	overflow-anchor: auto;
+	padding: 25px;
+	gap: 25px;
+	width: 100%;
+}
+
+.image-box {
+	position: relative;
+	height: auto;
+	width: 300px;
+}
+
+.image-box:hover .hover-image {
+	visibility: visible;
+}
+
+.image-box:hover .image {
+	transform: scale(1.05);
+}
+
+.image-box .image {
+	width: 300px;
+	height: auto;
+	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.774);
+	object-fit: cover;
+	transition: 0.1s ease;
+}
+
+.loader {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

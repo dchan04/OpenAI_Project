@@ -36,16 +36,16 @@ export default function Navbar() {
 								navData.isActive ? "activeClicked" : "none"
 							}
 						>
-							<CDBSidebarMenuItem>OpenGPT</CDBSidebarMenuItem>
+							<CDBSidebarMenuItem>ChatGPT</CDBSidebarMenuItem>
 						</NavLink>
 						<NavLink
-							to="/tables"
+							to="/createImg"
 							className={(navData) =>
 								navData.isActive ? "activeClicked" : "none"
 							}
 						>
 							<CDBSidebarMenuItem>
-								Chat Completition
+								Create Image
 							</CDBSidebarMenuItem>
 						</NavLink>
 						<NavLink
@@ -54,7 +54,9 @@ export default function Navbar() {
 								navData.isActive ? "activeClicked" : "none"
 							}
 						>
-							<CDBSidebarMenuItem>Moderation</CDBSidebarMenuItem>
+							<CDBSidebarMenuItem>
+								Moderation AI
+							</CDBSidebarMenuItem>
 						</NavLink>
 					</CDBSidebarMenu>
 				</CDBSidebarContent>

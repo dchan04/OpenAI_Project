@@ -50,7 +50,7 @@ namespace webapi.Controllers
 
         [HttpPost]
         [Route("ImageGen")]
-        public async Task<IActionResult> ImageGeneration(string prompt)
+        public async Task<IActionResult> ImageGeneration(string prompt, int num)
         {
             var client = new HttpClient();
             var request = new HttpRequestMessage
@@ -62,7 +62,7 @@ namespace webapi.Controllers
                     { "X-RapidAPI-Key", _config["OpenAi:Key"]},
                     { "X-RapidAPI-Host", "openai80.p.rapidapi.com" },
                 },
-                Content = new StringContent("{\r\n    \"prompt\": \""+ prompt + "\",\r\n    \"n\": 2,\r\n    \"size\": \"1024x1024\"\r\n}")
+                Content = new StringContent("{\r\n    \"prompt\": \""+ prompt + "\",\r\n    \"n\": " + num + ",\r\n    \"size\": \"1024x1024\"\r\n}")
                 {
                     Headers =
                     {
@@ -76,6 +76,7 @@ namespace webapi.Controllers
                 var body = await response.Content.ReadAsStringAsync();
                 dynamic content = JObject.Parse(body);
                 dynamic returnObj = content.data;
+                Console.Write(returnObj);
                 return Ok(returnObj);
             }
         }
