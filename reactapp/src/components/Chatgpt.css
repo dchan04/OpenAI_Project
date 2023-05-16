@@ -21,6 +21,11 @@
 }
 
 .ChatGPT .title h1 {
+	text-align: center;
+	color: white;
+}
+.ChatGPT .title h6 {
+	text-align: center;
 	color: white;
 }
 

@@ -7,6 +7,7 @@ import {
 	CDBSidebarMenu,
 	CDBSidebarMenuItem,
 } from "cdbreact";
+import * as Icon from "react-bootstrap-icons";
 import { NavLink } from "react-router-dom";
 export default function Navbar() {
 	return (
@@ -64,10 +65,23 @@ export default function Navbar() {
 				<CDBSidebarFooter style={{ textAlign: "center" }}>
 					<div
 						style={{
-							padding: "20px 5px",
+							padding: "10px 5px",
 						}}
 					>
-						Made By Darren Chan
+						Developed By Darren Chan
+					</div>
+					<div
+						style={{
+							padding: "10px 5px",
+						}}
+					>
+						<a
+							target="_blank"
+							rel="noreferrer"
+							href="https://github.com/dchan04"
+						>
+							<Icon.Github width={25} height={25} />
+						</a>
 					</div>
 				</CDBSidebarFooter>
 			</CDBSidebar>

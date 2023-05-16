@@ -7,9 +7,9 @@ export default function Chatgpt() {
 	const [isLoading, setIsLoading] = useState(false);
 	const [userInput, setUserInput] = useState("");
 	const [gptReply, setGptReply] = useState("");
-	const [messageHistory, setMessageHistory] = useState([]);
+	const [messageHistory] = useState([]);
 
-	const testHistory = [
+	/*const testHistory = [
 		{
 			id: crypto.randomUUID(),
 			role: "user",
@@ -23,7 +23,7 @@ export default function Chatgpt() {
 			timeStamp: "11:26:45",
 		},
 	];
-
+	*/
 	//Update message history with gpt reply.
 	useEffect(() => {
 		//console.log("useEffect Called");
@@ -73,7 +73,10 @@ export default function Chatgpt() {
 	return (
 		<div className="ChatGPT">
 			<div className="title">
-				<h1>ChatGPT</h1>
+				<div>
+					<h1>ChatGPT</h1>
+					<h6>Creates a completion for the chat message</h6>
+				</div>
 			</div>
 			<ul className="msgHistory">
 				{messageHistory?.map((msg) => (

@@ -6,7 +6,7 @@ using System.Net.Http.Headers;
 
 namespace webapi.Controllers
 {
-    [Route("[controller]/")]
+    [Route("[api]/")]
     [ApiController]
     public class ChatApiController : ControllerBase
     {

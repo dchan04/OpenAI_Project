@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import * as Icon from "react-bootstrap-icons";
 import Table from "react-bootstrap/Table";
+
 function FlagIcon(prop) {
 	if (prop.flag === true) {
 		return <Icon.CheckCircleFill color="lightgreen" size={25} />;
@@ -16,7 +17,7 @@ export default function Moderation() {
 	const [isLoading, setIsLoading] = useState(false);
 	const [results, setResults] = useState([]);
 	const [userInput, setUserInput] = useState("");
-	const [resultHistory, setResultHistory] = useState([]);
+	const [resultHistory] = useState([]);
 	/*const testResults = [
 		{
 			id: crypto.randomUUID(),
@@ -119,7 +120,13 @@ export default function Moderation() {
 	return (
 		<div className="moderation">
 			<div className="title">
-				<h1>Moderation Ai</h1>
+				<div>
+					<h1>Moderation Ai</h1>
+					<h6>
+						Given a input text, outputs if the model classifies it
+						as violating OpenAI's content policy.
+					</h6>
+				</div>
 			</div>
 			<ul className="results-container">
 				{resultHistory?.map((result) => (

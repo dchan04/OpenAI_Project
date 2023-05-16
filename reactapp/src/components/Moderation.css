@@ -23,6 +23,12 @@
 }
 
 .moderation .title h1 {
+	text-align: center;
+	color: white;
+}
+
+.moderation .title h6 {
+	text-align: center;
 	color: white;
 }
 

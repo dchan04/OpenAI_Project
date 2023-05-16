@@ -16,13 +16,18 @@
 
 .createImg .title {
 	display: flex;
-	padding: 10px;
+	padding: 15px;
 	width: 100%;
 	background-color: var(--bs-body-color);
 	justify-content: center;
 }
 
 .createImg .title h1 {
+	text-align: center;
+	color: white;
+}
+.createImg .title h6 {
+	text-align: center;
 	color: white;
 }
 

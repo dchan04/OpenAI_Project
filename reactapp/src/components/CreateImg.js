@@ -5,7 +5,6 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
-import * as Icon from "react-bootstrap-icons";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import loadImg from "./assets/loadingSpin.svg";
 import axios from "axios";
@@ -17,7 +16,6 @@ export default function CreateImg() {
 	const [userInput, setUserInput] = useState("");
 	const [errors, setErrors] = useState({});
 	const [numImgs, setNumImgs] = useState(1);
-	const [testImages] = useState([]);
 
 	useEffect(() => {
 		setIsLoading(false);
@@ -48,7 +46,10 @@ export default function CreateImg() {
 	return (
 		<div className="createImg">
 			<div className="title">
-				<h1>Create Image</h1>
+				<div>
+					<h1>Create Image</h1>
+					<h6>Creates an image given a prompt</h6>
+				</div>
 			</div>
 			<Row className="image-gallery">
 				{isLoading ? (
@@ -63,11 +64,10 @@ export default function CreateImg() {
 							className="image-box mb-2"
 						>
 							<a target="_blank" rel="noreferrer" href={img.url}>
-								<LazyLoadImage
+								<Image
 									className="image"
 									src={img.url}
 									alt=""
-									effect="blur"
 									placeholderSrc={img.url}
 								/>
 							</a>
