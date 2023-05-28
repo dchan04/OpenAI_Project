@@ -5,15 +5,23 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>5efec5bd-d8bb-411b-ab99-da4c0fe89378</UserSecretsId>
+   <ContainerImageName>openai_backend</ContainerImageName>
+    <PublishProfile>DefaultContainer</PublishProfile>
+	<ContainerImageTags>1.1.0;latest</ContainerImageTags>
+    <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.5" />
     <PackageReference Include="Microsoft.NET.Build.Containers" Version="7.0.302" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.18.1" />
+    <PackageReference Include="OpenAI" Version="1.7.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <ContainerPort Include="80" Type="tcp" />
+    <ContainerPort Include="443" Type="tcp" />
   </ItemGroup>
 
 </Project>

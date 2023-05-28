@@ -112,7 +112,7 @@ export default function Moderation() {
 		setIsLoading(true);
 		//call backend for result
 		axios
-			.post(`https://localhost:7290/ChatApi/AIMod?input=${userInput}`)
+			.post(`https://localhost:32768/AIMod?input=${userInput}`)
 			.then((res) => setResults(res.data))
 			.catch((error) => console.log(error));
 	};

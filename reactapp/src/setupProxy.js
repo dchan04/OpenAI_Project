@@ -1,10 +1,10 @@
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
-const context = ["/api"];
+const context = ["/ChatGpt", "/ImageGen", "/AIMod"];
 
 module.exports = function (app) {
 	const appProxy = createProxyMiddleware(context, {
-		target: "https://localhost:7290",
+		target: "https://localhost:32768",
 		secure: false,
 	});
 

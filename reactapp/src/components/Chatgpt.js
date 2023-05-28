@@ -63,7 +63,7 @@ export default function Chatgpt() {
 		messageHistory.push(message);
 		setIsLoading(true);
 		axios
-			.post(`https://localhost:7290/ChatApi/ChatGpt?userMsg=${userInput}`)
+			.post(`https://localhost:32768/ChatGpt?userMsg=${userInput}`)
 			.then((res) => setGptReply(res.data))
 			.catch((error) => console.log(error));
 		setUserInput("");
