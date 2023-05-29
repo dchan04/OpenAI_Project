@@ -4,16 +4,14 @@
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
-	left: 270px;
 	height: 100vh;
-	width: calc(100% - 270px);
+	flex-grow: 1;
 	line-height: 26px;
 	font-size: 16px;
 	background-color: var(--bs-gray-light);
 }
 
 .ChatGPT .title {
-	display: flex;
 	padding: 10px;
 	width: 100%;
 	background-color: var(--bs-body-color);

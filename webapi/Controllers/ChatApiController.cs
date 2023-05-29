@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
-using System.Net.Http.Headers;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -24,7 +22,7 @@ namespace webapi.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
+        /*[HttpPost]
         [Route("ImageGen")]
         public async Task<IActionResult> ImageGeneration(string prompt, int num)
         {
@@ -57,7 +55,7 @@ namespace webapi.Controllers
             }
         }
 
-
+        */
         [HttpPost]
         [Route("AIMod")]
         public async Task<IActionResult> AiModeration(string input)

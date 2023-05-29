@@ -16,7 +16,6 @@ export default function App() {
 		createRoutesFromElements(
 			<Route path="/" element={<Root />}>
 				<Route index path="/" element={<ChatGPT />} />
-				<Route path="/createImg" element={<CreateImage />} />
 				<Route index path="/moderation" element={<Moderation />} />
 			</Route>
 		)
@@ -31,9 +30,16 @@ export default function App() {
 function Root() {
 	return (
 		<>
-			<Navbar />
-			<Outlet />
-			{/* indicates where <Home/> should be rendered within <Root> */}
+			<div
+				style={{
+					display: "flex",
+					flexDirection: "row",
+				}}
+			>
+				<Navbar />
+				<Outlet />
+				{/* indicates where <Home/> should be rendered within <Root> */}
+			</div>
 		</>
 	);
 }

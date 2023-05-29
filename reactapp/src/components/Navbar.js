@@ -1,5 +1,6 @@
 import "./Navbar.css";
 import {
+	CDBIcon,
 	CDBSidebar,
 	CDBSidebarContent,
 	CDBSidebarFooter,
@@ -13,13 +14,13 @@ export default function Navbar() {
 	return (
 		<div
 			style={{
-				position: "absolute",
+				display: "flex",
 				height: "100vh",
 				overflow: "scroll initial",
 			}}
 		>
 			<CDBSidebar textColor="#fff" backgroundColor="var(--bs-body-color)">
-				<CDBSidebarHeader>
+				<CDBSidebarHeader prefix={<CDBIcon icon="bars" size="lg" />}>
 					<a
 						href="/"
 						className="text-decoration-none"
@@ -37,16 +38,8 @@ export default function Navbar() {
 								navData.isActive ? "activeClicked" : "none"
 							}
 						>
-							<CDBSidebarMenuItem>ChatGPT</CDBSidebarMenuItem>
-						</NavLink>
-						<NavLink
-							to="/createImg"
-							className={(navData) =>
-								navData.isActive ? "activeClicked" : "none"
-							}
-						>
-							<CDBSidebarMenuItem>
-								Create Image
+							<CDBSidebarMenuItem icon="robot">
+								ChatGPT
 							</CDBSidebarMenuItem>
 						</NavLink>
 						<NavLink
@@ -55,7 +48,7 @@ export default function Navbar() {
 								navData.isActive ? "activeClicked" : "none"
 							}
 						>
-							<CDBSidebarMenuItem>
+							<CDBSidebarMenuItem icon="user">
 								Moderation AI
 							</CDBSidebarMenuItem>
 						</NavLink>
@@ -68,13 +61,13 @@ export default function Navbar() {
 							padding: "10px 5px",
 						}}
 					>
-						Developed By Darren Chan
-					</div>
-					<div
-						style={{
-							padding: "10px 5px",
-						}}
-					>
+						<div
+							style={{
+								padding: "5px 5px",
+							}}
+						>
+							Developed By Darren Chan{" "}
+						</div>
 						<a
 							target="_blank"
 							rel="noreferrer"

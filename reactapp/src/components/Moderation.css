@@ -4,12 +4,10 @@
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
-	left: 270px;
 	height: 100vh;
-	width: calc(100% - 270px);
+	flex-grow: 1;
 	line-height: 26px;
 	font-size: 16px;
-	font-weight: 400;
 	background-color: var(--bs-gray-light);
 	color: #fff;
 }
