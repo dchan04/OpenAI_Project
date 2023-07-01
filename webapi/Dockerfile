@@ -7,10 +7,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["webapi/openai_backend.csproj", "webapi/"]
-RUN dotnet restore "webapi/openai_backend.csproj"
+COPY ["openai_backend.csproj", "."]
+RUN dotnet restore "openai_backend.csproj"
 COPY . .
-WORKDIR "/src/webapi"
+WORKDIR "/src/."
 RUN dotnet build "openai_backend.csproj" -c Release -o /app/build
 
 FROM build AS publish
