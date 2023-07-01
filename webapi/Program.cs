@@ -1,3 +1,4 @@
+using System.Net;
 using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,6 +30,16 @@ builder.Services.AddRateLimiter(options =>
     };
 });
 */
+
+if (!builder.Environment.IsDevelopment())
+{
+    builder.Services.AddHttpsRedirection(options =>
+    {
+        options.RedirectStatusCode = (int)HttpStatusCode.PermanentRedirect;
+        options.HttpsPort = 443;
+    });
+}
+
 builder.Services.AddCors(setupAction: options =>
 {
     options.AddPolicy("CORSPolicy", configurePolicy: builder =>
