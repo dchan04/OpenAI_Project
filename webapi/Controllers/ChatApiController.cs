@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using Newtonsoft.Json.Linq;
+using System.Net.Http.Headers;
 
 namespace webapi.Controllers
 {
@@ -17,9 +17,30 @@ namespace webapi.Controllers
         [Route("ChatGpt")]
         public async Task<IActionResult> ChatGPT(string userMsg)
         {
-            var api = new OpenAI_API.OpenAIAPI(_config["OpenAi:Key"]);
-            var result = await api.Completions.GetCompletion(userMsg);
-            return Ok(result);
+            var client = new HttpClient();
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri("https://openai80.p.rapidapi.com/chat/completions"),
+                Headers =
+                {
+                    { "X-RapidAPI-Key", _config["OpenAi:Key"] },
+                    { "X-RapidAPI-Host", "openai80.p.rapidapi.com" },
+                },
+                Content = new StringContent("{\r\n    \"model\": \"gpt-3.5-turbo\",\r\n    \"messages\": [\r\n        {\r\n            \"role\": \"user\",\r\n            \"content\": \"" + userMsg + "\"\r\n        }\r\n    ]\r\n}")
+                {
+                    Headers =
+                    {
+                        ContentType = new MediaTypeHeaderValue("application/json")
+                    }
+                }
+            };
+            using var response = await client.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+            var body = await response.Content.ReadAsStringAsync();
+            dynamic content = JObject.Parse(body);
+            dynamic returnObj = content.choices[0].message.content;
+            return Ok(returnObj);
         }
 
         /*[HttpPost]
@@ -60,10 +81,33 @@ namespace webapi.Controllers
         [Route("AIMod")]
         public async Task<IActionResult> AiModeration(string input)
         {
-            var api = new OpenAI_API.OpenAIAPI(_config["OpenAi:Key"]);
-            var result = await api.Moderation.CallModerationAsync(input);
-            return Ok(result.Results[0]);
-            
+            var client = new HttpClient();
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri("https://openai80.p.rapidapi.com/moderations"),
+                Headers =
+                {
+                    { "X-RapidAPI-Key", _config["OpenAi:Key"] },
+                    { "X-RapidAPI-Host", "openai80.p.rapidapi.com" },
+                },
+                Content = new StringContent("{\r\n    \"input\": \"" + input + "\",\r\n    \"model\": \"text-moderation-stable\"\r\n}")
+                {
+                    Headers =
+                    {
+                        ContentType = new MediaTypeHeaderValue("application/json")
+                    }
+                }
+            };
+            using (var response = await client.SendAsync(request))
+            {
+                response.EnsureSuccessStatusCode();
+                var body = await response.Content.ReadAsStringAsync();
+                dynamic content = JObject.Parse(body);
+                dynamic returnObj = content.results[0];
+                return Ok(returnObj);
+            }
+
         }
     }
 }
