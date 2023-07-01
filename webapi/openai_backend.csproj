@@ -6,8 +6,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>5efec5bd-d8bb-411b-ab99-da4c0fe89378</UserSecretsId>
    <ContainerImageName>openai_backend</ContainerImageName>
-    <PublishProfile>DefaultContainer</PublishProfile>
-	<ContainerImageTags>latest</ContainerImageTags>
     <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
