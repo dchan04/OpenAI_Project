@@ -1,6 +1,6 @@
 
 var builder = WebApplication.CreateBuilder(args);
-var openAiKey = builder.Configuration["OpenAi:Key"];
+var openAiKey = builder.Configuration["OpenAiKey"];
 
 // Add services to the container.
 
@@ -22,6 +22,8 @@ builder.Services.AddCors(setupAction: options =>
 var app = builder.Build();
 app.UseRateLimiter();
 
+app.UseHttpsRedirection();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -33,7 +35,7 @@ else
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+
 app.UseCors(policyName: "CORSPolicy");
 
 app.UseAuthorization();

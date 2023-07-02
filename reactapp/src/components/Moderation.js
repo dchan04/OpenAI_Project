@@ -112,7 +112,9 @@ export default function Moderation() {
 		setIsLoading(true);
 		//call backend for result
 		axios
-			.post(`https://localhost:32768/AIMod?input=${userInput}`)
+			.post(
+				`https://dchan04aibackend.onrender.com/AIMod?input=${userInput}`
+			)
 			.then((res) => setResults(res.data))
 			.catch((error) => console.log(error));
 	};

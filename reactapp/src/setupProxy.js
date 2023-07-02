@@ -1,10 +1,10 @@
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
-const context = ["/ChatGpt", "/ImageGen", "/AIMod"];
+const context = ["/ChatGpt", "/AIMod"];
 
 module.exports = function (app) {
 	const appProxy = createProxyMiddleware(context, {
-		target: "https://localhost:32768",
+		target: "https://dchan04aibackend.onrender.com",
 		secure: false,
 	});
 

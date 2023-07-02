@@ -59,7 +59,7 @@
 .msg-chatgpt .timeStamp {
 	position: relative;
 	bottom: calc(0% - 35px);
-	text-align: start;
+	text-align: center;
 	color: #000000b7;
 }
 
@@ -94,7 +94,7 @@
 	position: relative;
 	margin: 5px;
 	align-self: flex-end;
-	text-align: left;
+	text-align: center;
 	background-color: #94c2ed;
 }
 
