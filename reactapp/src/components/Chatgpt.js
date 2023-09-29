@@ -24,10 +24,12 @@ export default function Chatgpt() {
 		},
 	];
 	*/
+
 	//Update message history with gpt reply.
 	useEffect(() => {
 		//console.log("useEffect Called");
 		var today = new Date();
+		console.log(gptReply);
 		if (gptReply.length >= 1) {
 			messageHistory.push({
 				id: crypto.randomUUID(),
@@ -44,7 +46,7 @@ export default function Chatgpt() {
 		setGptReply("");
 		setIsLoading(false);
 		bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-	}, [gptReply]);
+	}, [gptReply, messageHistory]);
 
 	//Call Api
 	const submitUserInput = () => {
@@ -62,12 +64,16 @@ export default function Chatgpt() {
 		};
 		messageHistory.push(message);
 		setIsLoading(true);
+		console.log(
+			`https://dchan04aibackend.onrender.com/ChatGpt?userMsg=${userInput}`
+		);
 		axios
 			.post(
 				`https://dchan04aibackend.onrender.com/ChatGpt?userMsg=${userInput}`
 			)
 			.then((res) => setGptReply(res.data))
 			.catch((error) => console.log(error));
+
 		setUserInput("");
 		bottomRef.current?.scrollIntoView({ behavior: "smooth" });
 	};
@@ -76,7 +82,7 @@ export default function Chatgpt() {
 		<div className="ChatGPT">
 			<div className="title">
 				<div>
-					<h1>ChatGPT</h1>
+					<h1>Chat Bot</h1>
 					<h6>Creates a completion for the chat message</h6>
 				</div>
 			</div>

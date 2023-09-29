@@ -5,7 +5,6 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import loadImg from "./assets/loadingSpin.svg";
 import axios from "axios";
 

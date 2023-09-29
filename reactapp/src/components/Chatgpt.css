@@ -51,7 +51,7 @@
 
 .msgHistory li {
 	padding: 1.5rem 2rem 0px 2rem;
-	list-style: none;
+	font-size: large;
 	border-radius: 20px;
 	color: #fff;
 }
@@ -59,7 +59,7 @@
 .msg-chatgpt .timeStamp {
 	position: relative;
 	bottom: calc(0% - 35px);
-	text-align: center;
+	text-align: left;
 	color: #000000b7;
 }
 
@@ -72,8 +72,9 @@
 
 .msg-chatgpt {
 	position: relative;
-	margin: 50px;
+	margin: 5em;
 	text-align: left;
+	white-space: pre-line;
 	background-color: #86bb71;
 }
 

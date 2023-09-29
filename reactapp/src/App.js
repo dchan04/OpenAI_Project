@@ -9,7 +9,7 @@ import {
 import Navbar from "./components/Navbar";
 import ChatGPT from "./components/Chatgpt";
 import Moderation from "./components/Moderation";
-import CreateImage from "./components/CreateImg";
+//import CreateImage from "./components/CreateImg";
 
 export default function App() {
 	const router = createBrowserRouter(
